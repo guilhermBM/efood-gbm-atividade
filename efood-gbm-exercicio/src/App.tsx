@@ -1,7 +1,12 @@
-import './App.css'
+import { GlobalCss } from './styles'
 
 function App() {
-  return <div> Olá, mundo</div>
+  return (
+    <>
+      <GlobalCss />
+      <div> Olá, mundo</div>
+    </>
+  )
 }
 
 export default App
