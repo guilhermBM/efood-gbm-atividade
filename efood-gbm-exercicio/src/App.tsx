@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
-import { GlobalCss } from './styles'
 
 import Home from './Pages/Home'
 import LaDolce from './Pages/LaDolce'
 import Footer from './Components/Footer'
+
+import { GlobalCss } from './styles'
 
 const rotas = createBrowserRouter([
   {
@@ -17,20 +16,13 @@ const rotas = createBrowserRouter([
     element: <LaDolce />
   }
 ])
-=======
-import { GlobalCss } from './styles'
->>>>>>> parent of 98ad183 (bannerHero)
 
 function App() {
   return (
     <>
       <GlobalCss />
-<<<<<<< HEAD
       <RouterProvider router={rotas} />
       <Footer />
-=======
-      <div> Olá, mundo</div>
->>>>>>> parent of 98ad183 (bannerHero)
     </>
   )
 }
