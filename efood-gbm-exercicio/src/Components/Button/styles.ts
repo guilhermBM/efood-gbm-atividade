@@ -1,7 +1,7 @@
+import styled from 'styled-components'
+
 import { Link } from 'react-router-dom'
 import { cores } from '../../styles'
-
-import styled from 'styled-components'
 
 export const ButtonProduct = styled.button`
   padding: 4px 6px;
