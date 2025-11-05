@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import { cores } from '../../styles'
 
 export const Container = styled.footer`
@@ -23,8 +24,8 @@ export const Link = styled.a`
   margin-right: 8px;
 `
 export const Description = styled.p`
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 400;
   font-family: Roboto, sans-serif;
-  margin-bottom: 40px;
+  max-width: 480px;
 `

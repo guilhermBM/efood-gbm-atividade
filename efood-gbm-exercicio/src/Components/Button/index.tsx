@@ -1,8 +1,8 @@
 import { ButtonProduct, ButtonLink } from './styles'
 
 type Props = {
-  type: 'button' | 'link'
-  title: string
+  type?: 'button' | 'link'
+  title?: string
   to?: string
   onClick?: () => void
   children: string

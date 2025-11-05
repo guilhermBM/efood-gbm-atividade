@@ -1,5 +1,6 @@
 import logo from '../../assets/images/logo.svg'
 import fundo from '../../assets/images/fundo.svg'
+
 import { BackImage, HeaderText, Logo } from './styles'
 
 const Header = () => (

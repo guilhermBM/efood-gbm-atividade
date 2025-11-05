@@ -5,6 +5,7 @@ class Products {
   rating: string
   infos: string[]
   id: number
+  to: string
 
   constructor(
     title: string,
@@ -12,7 +13,8 @@ class Products {
     image: string,
     rating: string,
     infos: string[],
-    id: number
+    id: number,
+    to: string
   ) {
     this.id = id
     this.title = title
@@ -20,6 +22,7 @@ class Products {
     this.image = image
     this.rating = rating
     this.infos = infos
+    this.to = to
   }
 }
 

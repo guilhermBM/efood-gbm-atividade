@@ -1,5 +1,6 @@
 import Products from '../../models/Product'
 import Product from '../Product'
+
 import { Container, List } from './styles'
 
 export type Props = {
@@ -18,6 +19,7 @@ const ProductsList = ({ produtos }: Props) => (
             infos={produto.infos}
             rating={produto.rating}
             title={produto.title}
+            to={produto.to}
           />
         ))}
       </List>

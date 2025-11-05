@@ -2,6 +2,7 @@ import logo from '../../assets/images/logo.svg'
 import facebook from '../../assets/images/facebook-icon.svg'
 import instagram from '../../assets/images/instagram-icon.svg'
 import twiter from '../../assets/images/twitter-icon.svg'
+
 import { Container, Links, Link, Description } from './styles'
 
 const Footer = () => (

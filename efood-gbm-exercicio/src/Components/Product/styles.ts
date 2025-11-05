@@ -1,6 +1,6 @@
 import styled from 'styled-components'
+
 import { cores } from '../../styles'
-import { ButtonLink } from '../Button/styles'
 
 export const CardProduto = styled.div`
   background-color: ${cores.branca};
@@ -10,7 +10,7 @@ export const CardProduto = styled.div`
   padding-bottom: 16px;
   position: relative;
 
-  ${ButtonLink} {
+  a {
     margin-left: 8px;
   }
 

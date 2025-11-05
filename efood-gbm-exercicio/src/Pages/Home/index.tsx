@@ -1,9 +1,10 @@
+import ScrollToTop from '../../Components/ScrollToTop'
 import Header from '../../Components/Header'
 import ProductsList from '../../Components/ProductsList'
+import Products from '../../models/Product'
 
 import hiokisushi from '../../assets/images/hiokisushi.svg'
 import macarrao from '../../assets/images/macarrao.svg'
-import Products from '../../models/Product'
 
 const listaProdutos: Products[] = [
   {
@@ -13,7 +14,8 @@ const listaProdutos: Products[] = [
     title: 'Hioki Sushi',
     image: hiokisushi,
     infos: ['Destaque da semana', 'Japonesa'],
-    rating: '4.9'
+    rating: '4.9',
+    to: '/'
   },
   {
     id: 2,
@@ -22,7 +24,8 @@ const listaProdutos: Products[] = [
     title: 'La Dolce Vita Trattoria',
     image: macarrao,
     infos: ['Italiana'],
-    rating: '4.6'
+    rating: '4.6',
+    to: '/LaDolceVita'
   },
   {
     id: 3,
@@ -31,7 +34,8 @@ const listaProdutos: Products[] = [
     title: 'La Dolce Vita Trattoria',
     image: macarrao,
     infos: ['Italiana'],
-    rating: '4.6'
+    rating: '4.6',
+    to: '/LaDolceVita'
   },
   {
     id: 4,
@@ -40,7 +44,8 @@ const listaProdutos: Products[] = [
     title: 'La Dolce Vita Trattoria',
     image: macarrao,
     infos: ['Italiana'],
-    rating: '4.6'
+    rating: '4.6',
+    to: '/LaDolceVita'
   },
   {
     id: 5,
@@ -49,7 +54,8 @@ const listaProdutos: Products[] = [
     title: 'La Dolce Vita Trattoria',
     image: macarrao,
     infos: ['Italiana'],
-    rating: '4.6'
+    rating: '4.6',
+    to: '/LaDolceVita/'
   },
   {
     id: 6,
@@ -58,12 +64,14 @@ const listaProdutos: Products[] = [
     title: 'La Dolce Vita Trattoria',
     image: macarrao,
     infos: ['Italiana'],
-    rating: '4.6'
+    rating: '4.6',
+    to: '/LaDolceVita'
   }
 ]
 
 const Home = () => (
   <>
+    <ScrollToTop />
     <Header />
     <ProductsList produtos={listaProdutos} />
   </>
