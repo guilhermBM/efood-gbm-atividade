@@ -3,7 +3,7 @@ import { ButtonProduct, ButtonLink } from './styles'
 type Props = {
   type?: 'button' | 'link'
   title?: string
-  to?: string
+  to: string
   onClick?: () => void
   children: string
 }
@@ -17,7 +17,7 @@ const Button = ({ type, title, to, onClick, children }: Props) => {
     )
   }
   return (
-    <ButtonLink to={to as string} title={title}>
+    <ButtonLink to={to} title={title}>
       {children}
     </ButtonLink>
   )

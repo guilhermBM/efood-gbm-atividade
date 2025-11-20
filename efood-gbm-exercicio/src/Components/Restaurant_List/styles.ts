@@ -14,9 +14,11 @@ export const CardProduto = styled.div`
     margin-left: 8px;
   }
 
-  img {
-    width: 100%;
+  > img {
     display: block;
+    width: 100%;
+    height: 218px;
+    object-fit: cover;
   }
 `
 
