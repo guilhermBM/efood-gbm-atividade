@@ -16,7 +16,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<Produto>) => {
-      const produto = state.items.find((item) => (item.id = action.payload.id))
+      const produto = state.items.find((item) => item.id === action.payload.id)
 
       if (!produto) {
         state.items.push(action.payload)
@@ -24,7 +24,7 @@ const cartSlice = createSlice({
         alert('O produto já foi adicionado ao carrinho!')
       }
     },
-    remove: (state, action: PayloadAction<number>) => {
+    remove: (state, action: PayloadAction<number | string>) => {
       state.items = state.items.filter((item) => item.id !== action.payload)
     },
     open: (state) => {
