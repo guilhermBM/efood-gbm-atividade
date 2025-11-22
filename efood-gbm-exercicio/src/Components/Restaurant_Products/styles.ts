@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { cores } from '../../styles'
+import { breakPoints, cores } from '../../styles'
 
 export const Container = styled.section`
   margin-top: 56px;
@@ -19,6 +19,7 @@ export const ImageCard = styled.img`
   width: 304px;
   height: 168px;
   margin: 8px;
+  cursor: pointer;
 `
 
 export const ProductTitle = styled.h2`
@@ -59,9 +60,22 @@ export const Modal = styled.div`
   display: none;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
 
   &.visivel {
     display: flex;
+  }
+
+  &.animando {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &.fechando {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .overlay {
@@ -112,6 +126,27 @@ export const ModalContent = styled.div`
       width: 218px;
       height: 24px;
       border: none;
+      cursor: pointer;
+    }
+  }
+
+  @media (max-width: ${breakPoints.desktop}) {
+    max-width: 90%;
+
+    > img {
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    div {
+      h4 {
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 12px;
+      }
     }
   }
 `

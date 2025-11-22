@@ -3,15 +3,20 @@ import fundo from '../../assets/images/fundo.svg'
 import Button from '../Button'
 
 import apresentacao from '../../assets/images/apresentacao.svg'
+
+import { open } from '../../Store/reducers/cart'
+
 import {
   BackImage,
-  Carrinho,
+  ButtonCart,
   Container,
   HeroDesc,
   HeroImage,
   HeroTitle,
   Logo
 } from './styles'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../Store'
 
 type Restaurante = {
   titulo: string
@@ -27,6 +32,14 @@ const Header = ({ restaurante }: Props) => {
     return texto.charAt(0).toUpperCase() + texto.slice(1)
   }
 
+  const { items } = useSelector((state: RootReducer) => state.cart)
+
+  const dispatch = useDispatch()
+
+  const openCart = () => {
+    dispatch(open())
+  }
+
   return (
     <>
       <BackImage style={{ backgroundImage: `url(${fundo})` }}>
@@ -35,7 +48,9 @@ const Header = ({ restaurante }: Props) => {
             Restaurantes
           </Button>
           <Logo src={logo} alt="Efood" />
-          <Carrinho>0 produto(s) no carrinho</Carrinho>
+          <ButtonCart onClick={openCart}>
+            {items.length} produto(s)🛒
+          </ButtonCart>
         </Container>
       </BackImage>
       <HeroImage style={{ backgroundImage: `url(${apresentacao})` }}>

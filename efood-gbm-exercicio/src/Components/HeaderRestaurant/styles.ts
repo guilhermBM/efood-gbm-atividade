@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { ButtonLink } from '../Button/styles'
-import { cores } from '../../styles'
+import { breakPoints, cores } from '../../styles'
 
 export const BackImage = styled.div`
   width: 100%;
@@ -21,6 +21,16 @@ export const Container = styled.div`
     color: ${cores.vermelho};
     font-size: 16px;
   }
+
+  @media (max-width: ${breakPoints.desktop}) {
+    max-width: 80%;
+    justify-content: space-between;
+
+    img {
+      display: flex;
+      justify-content: center;
+    }
+  }
 `
 
 export const Logo = styled.img`
@@ -28,9 +38,10 @@ export const Logo = styled.img`
   width: 100%;
 `
 
-export const Carrinho = styled.span`
+export const ButtonCart = styled.span`
   font-size: 16px;
   font-weight: bold;
+  cursor: pointer;
 `
 
 export const HeroImage = styled.div`

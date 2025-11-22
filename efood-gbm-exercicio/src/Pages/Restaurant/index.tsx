@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import ScrollToTop from '../../Components/ScrollToTop'
 import Header from '../../Components/HeaderRestaurant'
 import ProductsList from '../../Components/Restaurant_P_List'
+import { useGetRestaurantProductQuery } from '../../services/api'
+import Cart from '../../Components/Cart'
 
 export type Produto = {
   foto: string
@@ -23,21 +25,19 @@ export type Restaurante = {
 
 function Restaurant() {
   const { id } = useParams()
-  const [restaurante, setRestaurante] = useState<Restaurante | null>(null)
+  const { data: restaurante, isLoading } = useGetRestaurantProductQuery(
+    id ?? ''
+  )
 
-  useEffect(() => {
-    fetch(`https://api-ebac.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((data) => setRestaurante(data))
-  }, [id])
-
-  if (!restaurante) return <div>Carregando...</div>
+  if (isLoading) return <div>Carregando...</div>
+  if (!restaurante) return <div>Erro ao carregar restaurante</div>
 
   return (
     <>
       <ScrollToTop />
       <Header restaurante={restaurante} />
       <ProductsList produtos={restaurante.cardapio} />
+      <Cart />
     </>
   )
 }

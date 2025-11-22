@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import ScrollToTop from '../../Components/ScrollToTop'
 import Header from '../../Components/Header'
 import ProductsList from '../../Components/ProductsList'
+import { useGetRestaurantsQuery } from '../../services/api'
 
 export type Restaurantes = {
   id: number
@@ -15,13 +16,10 @@ export type Restaurantes = {
 }
 
 const Home = () => {
-  const [restaurantes, setRestaurantes] = useState<Restaurantes[]>([])
+  const { data: restaurantes, isLoading } = useGetRestaurantsQuery()
 
-  useEffect(() => {
-    fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setRestaurantes(res))
-  }, [])
+  if (isLoading) return <div>Carregando...</div>
+  if (!restaurantes) return <div>Não foi possível carregar restaurantes.</div>
 
   return (
     <>

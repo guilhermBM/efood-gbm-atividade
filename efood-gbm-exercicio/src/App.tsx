@@ -1,10 +1,6 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  BrowserRouter,
-  Routes,
-  Route
-} from 'react-router-dom'
+import { Provider } from 'react-redux'
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from './Pages/Home'
 import Footer from './Components/Footer'
@@ -12,6 +8,7 @@ import Footer from './Components/Footer'
 import { GlobalCss } from './styles'
 
 import Restaurant from './Pages/Restaurant'
+import { store } from './Store'
 
 const Rotas = () => (
   <Routes>
@@ -22,11 +19,13 @@ const Rotas = () => (
 
 function App() {
   return (
-    <BrowserRouter>
-      <GlobalCss />
-      <Rotas />
-      <Footer />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <GlobalCss />
+        <Rotas />
+        <Footer />
+      </BrowserRouter>
+    </Provider>
   )
 }
 

@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { add } from '../../Store/reducers/cart'
 
 import close from '../../assets/images/fechar.png'
 
@@ -14,7 +17,7 @@ import {
   Fechar
 } from './styles'
 
-type Produto = {
+export type Produto = {
   foto: string
   preco: number
   id: number
@@ -27,15 +30,45 @@ type Props = {
   produto: Produto
 }
 
-const RestaurantProducts = ({ produto }: Props) => {
-  const [modalEstaAberto, setModalEstaAberto] = useState(false)
+export const formataPreco = (preco: number) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+// função que formata o preço do produto
 
-  const formataPreco = (preco: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(preco)
+const RestaurantProducts = ({ produto }: Props) => {
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    dispatch(add(produto))
   }
+
+  const addToCartAndClose = () => {
+    addToCart()
+    fecharModalAnimado()
+  }
+  // função adiciona ao carrinho ^
+
+  const [modalEstaAberto, setModalEstaAberto] = useState(false)
+  const [animando, setAnimando] = useState(false)
+  const [modalFechado, setModalFechado] = useState(false)
+
+  const abrirModalAnimado = () => {
+    setModalEstaAberto(true)
+    setTimeout(() => setAnimando(true), 10)
+  }
+
+  const fecharModalAnimado = () => {
+    setAnimando(false)
+    setModalFechado(true)
+    setTimeout(() => {
+      setModalEstaAberto(false)
+      setModalFechado(false)
+    }, 300)
+  }
+  // função anima o fechar e abrir do modal ^
 
   const getDescricao = (descricao: string) => {
     if (descricao.length > 130) {
@@ -43,47 +76,44 @@ const RestaurantProducts = ({ produto }: Props) => {
     }
     return descricao
   }
+  // função que limita a descrição do produto
 
   return (
     <>
       <Container>
         <div>
           <Card>
-            <ImageCard src={produto.foto} alt={produto.nome} />
+            <ImageCard
+              src={produto.foto}
+              alt={produto.nome}
+              onClick={abrirModalAnimado}
+            />
             <ProductTitle>{produto.nome}</ProductTitle>
             <ProductDesc>{getDescricao(produto.descricao)}</ProductDesc>
-            <ButtonCard onClick={() => setModalEstaAberto(true)}>
-              Mais detalhes
-            </ButtonCard>
+            <ButtonCard onClick={abrirModalAnimado}>Mais detalhes</ButtonCard>
           </Card>
         </div>
       </Container>
-      <Modal className={modalEstaAberto ? 'visivel' : ''}>
+      <Modal
+        className={`${modalEstaAberto ? 'visivel' : ''} ${animando ? 'animando' : ''} ${modalFechado ? 'fechando' : ''}`}
+      >
         <ModalContent className="container">
           <img src={produto.foto} />
           <div>
-            <Fechar
-              src={close}
-              onClick={() => {
-                setModalEstaAberto(false)
-              }}
-            />
+            <Fechar src={close} onClick={fecharModalAnimado} />
             <div>
               <h4>{produto.nome}</h4>
               <p>{produto.descricao}</p>
               <p>
                 <b>Serve:</b> {produto.porcao}
               </p>
-              <button>
+              <button onClick={addToCartAndClose}>
                 Adicionar ao carrinho - {formataPreco(produto.preco)}
               </button>
             </div>
           </div>
         </ModalContent>
-        <div
-          className="overlay"
-          onClick={() => setModalEstaAberto(false)}
-        ></div>
+        <div className="overlay" onClick={fecharModalAnimado}></div>
       </Modal>
     </>
   )
